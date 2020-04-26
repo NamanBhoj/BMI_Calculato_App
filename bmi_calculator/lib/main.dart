@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'ResultPage.dart';
 import 'input_page.dart';
+import 'BmiBrain.dart';
 
 void main() => runApp(BMICalculator());
 
@@ -7,6 +9,11 @@ class BMICalculator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      home: InputPage(),
+      routes: {
+        '/result': (context) => ResultPage(),
+        '/input': (context) => InputPage()
+      },
       theme: ThemeData(
           scaffoldBackgroundColor: Color(0xFF0A0E21),
           primaryColor: Color(0xFF0A0E21),
@@ -14,7 +21,6 @@ class BMICalculator extends StatelessWidget {
               .red, //we will use textTheme to change the color as color can
           //be changed at various places in our Theme and a lot of customisation can be done
           textTheme: TextTheme(body1: TextStyle(color: Colors.white))),
-      home: InputPage(),
     );
   }
 }

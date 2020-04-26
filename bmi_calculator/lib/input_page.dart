@@ -1,14 +1,19 @@
+import 'package:bmicalculator/BmiBrain.dart';
+import 'package:bmicalculator/ResultPage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'IconCustomWidget.dart';
 import 'reusablecard.dart';
+import 'CustomButton.dart';
 
 const bottomcontainerheight = 80.0;
 const usedcardcolor = Color(0xFF1D1E33);
 const inactivecardcolor = Color(0xFF111328);
-const bottomcolor = Color(0xFF11CDC4);
+const bottomcolor = Color(0xFF1D1E43);
 int height = 180;
+int weight = 60;
+int age = 10;
 
 enum GenderType { Male, Female }
 
@@ -67,7 +72,7 @@ class _InputPageState extends State<InputPage> {
                         ? usedcardcolor
                         : inactivecardcolor,
                     cardchild:
-                        IconCustomWidget(t: 'Male', i: FontAwesomeIcons.mars),
+                        IconCustomWidget(t: 'MALE', i: FontAwesomeIcons.mars),
                   )),
                   Expanded(
                       child: ReusableCard(
@@ -83,7 +88,7 @@ class _InputPageState extends State<InputPage> {
                         ? usedcardcolor
                         : inactivecardcolor,
                     cardchild: IconCustomWidget(
-                        t: 'Female', i: FontAwesomeIcons.venus),
+                        t: 'FEMALE', i: FontAwesomeIcons.venus),
                   )),
                 ],
               ),
@@ -95,7 +100,7 @@ class _InputPageState extends State<InputPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Text(
-                    'Height',
+                    'HEIGHT',
                     style: TextStyle(fontSize: 18.0, color: Colors.lime[200]),
                   ),
                   Row(
@@ -136,25 +141,114 @@ class _InputPageState extends State<InputPage> {
                   Expanded(
                       child: ReusableCard(
                     colour: usedcardcolor,
+                    cardchild: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Text(
+                          'WEIGHT (Kg)',
+                          style: TextStyle(
+                              fontSize: 18.0, color: Colors.lime[200]),
+                        ),
+                        Text(
+                          weight.toString(),
+                          style: TextStyle(
+                              fontSize: 30.0, color: Colors.lime[200]),
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            CustomButton(
+                                I: FontAwesomeIcons.minus,
+                                OnPressed: () {
+                                  setState(() {
+                                    weight--;
+                                  });
+                                }),
+                            SizedBox(
+                              width: 10.0,
+                            ),
+                            CustomButton(
+                                I: FontAwesomeIcons.plus,
+                                OnPressed: () {
+                                  setState(() {
+                                    weight++;
+                                  });
+                                })
+                          ], // USE CTRL +ALT+B FOR SEEING IMPLEMENTATION OF FLOATIN ACTION BUTTON
+                        )
+                      ],
+                    ),
                   )),
                   Expanded(
                       child: ReusableCard(
                     colour: usedcardcolor,
+                    cardchild: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Text(
+                          'AGE ',
+                          style: TextStyle(
+                              fontSize: 18.0, color: Colors.lime[200]),
+                        ),
+                        Text(
+                          age.toString(),
+                          style: TextStyle(
+                              fontSize: 30.0, color: Colors.lime[200]),
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            CustomButton(
+                                I: FontAwesomeIcons.minus,
+                                OnPressed: () {
+                                  setState(() {
+                                    age--;
+                                  });
+                                }),
+                            SizedBox(
+                              width: 10.0,
+                            ),
+                            CustomButton(
+                                I: FontAwesomeIcons.plus,
+                                OnPressed: () {
+                                  setState(() {
+                                    age++;
+                                  });
+                                })
+                          ], // USE CTRL +ALT+B FOR SEEING IMPLEMENTATION OF FLOATIN ACTION BUTTON
+                        )
+                      ],
+                    ),
                   )),
                 ],
               ),
             ),
-            Container(
-              child: Text(
-                'Calculate BMI',
-                style: TextStyle(fontSize: 30),
+            GestureDetector(
+              onTap: () {
+                Bmibrain cal = Bmibrain(height: height, weight: weight);
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ResultPage(
+                          Bmiresult: cal.Calculatebmi(),
+                          Resulttext: cal.getResult(),
+                          Suggestion: cal.getSuggestion()),
+                    ));
+              },
+              child: Container(
+                child: Center(
+                  child: Text(
+                    'CALCULATE',
+                    style: TextStyle(fontSize: 30.0, color: Colors.lime[200]),
+                  ),
+                ),
+                color: bottomcolor,
+                margin: EdgeInsets.only(top: 10),
+                width: double.infinity,
+                height:
+                    bottomcontainerheight, // we have declared it as a constant as in compile time we will
+                //be easily able to change it .
               ),
-              color: bottomcolor,
-              margin: EdgeInsets.only(top: 10),
-              width: double.infinity,
-              height:
-                  bottomcontainerheight, // we have declared it as a constant as in compile time we will
-              //be easily able to change it .
             )
           ],
         ));
