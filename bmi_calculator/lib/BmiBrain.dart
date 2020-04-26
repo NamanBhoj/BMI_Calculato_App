@@ -9,7 +9,7 @@ class Bmibrain {
   Bmibrain({this.height, this.weight});
 
   String Calculatebmi() {
-    double _bmi = weight / pow(height / 100, 2);
+    _bmi = weight / pow(height / 100, 2);
     return _bmi
         .toStringAsFixed(2); // specify the number of decimal places you want
   }

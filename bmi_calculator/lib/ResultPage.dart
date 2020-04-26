@@ -46,18 +46,21 @@ class ResultPage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
                   Text(
-                    Bmiresult,
+                    Resulttext.toUpperCase(),
                     style: TextStyle(
                       fontSize: 20.0,
                       color: Color(0xFF24D876),
                     ),
                   ),
                   Text(
-                    'fg',
-                    style: TextStyle(fontSize: 40.0, color: Color(0xFF3D567)),
+                    Bmiresult,
+                    style: TextStyle(
+                        fontSize: 40.0,
+                        color: Colors.lime[200],
+                        fontWeight: FontWeight.bold),
                   ),
                   Text(
-                    'gh',
+                    Suggestion.toUpperCase(),
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 20.0,
@@ -75,7 +78,7 @@ class ResultPage extends StatelessWidget {
             child: Container(
               child: Center(
                 child: Text(
-                  'RECALCULATE',
+                  'RE-CALCULATE',
                   style: TextStyle(fontSize: 30.0, color: Colors.lime[200]),
                 ),
               ),

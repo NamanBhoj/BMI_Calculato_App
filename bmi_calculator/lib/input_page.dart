@@ -6,6 +6,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'IconCustomWidget.dart';
 import 'reusablecard.dart';
 import 'CustomButton.dart';
+import 'BmiBrain.dart';
 
 const bottomcontainerheight = 80.0;
 const usedcardcolor = Color(0xFF1D1E33);
